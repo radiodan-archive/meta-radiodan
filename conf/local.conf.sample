@@ -2,7 +2,7 @@
 # uncomment the following -- this speeds up the builds, but no changes from the
 # upstream repos will be pulled in.  Mostly useful if you are rebuilding a
 # package from a local copy of a repo
-BB_SRCREV_POLICY = "cache"
+#BB_SRCREV_POLICY = "cache"
 
 # To enable debug builds
 #DEBUG_BUILD = "1"
