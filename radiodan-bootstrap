@@ -3,8 +3,10 @@ rm -f $TD/build/conf/local.conf
 rm -f $TD/build/conf/bblayers.conf
 echo "TEMPLATECONF=\"$TD/meta-radiodan/conf\"" > $TD/.templateconf
 
+echo ""
 echo "Radiodan environment has been bootstrapped -- you might want to tweak"
-echo "build/conf/local.conf to suite your requirements.
+echo "build/conf/local.conf to suite your requirements."
+echo ""
 echo "(NB: you do not need to run the bootstrap command again, and doing so"
 echo "will overwrite any changes you make to local.conf and bblayers.conf)"
 echo ""
