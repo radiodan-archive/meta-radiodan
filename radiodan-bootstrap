@@ -1,0 +1,14 @@
+TD=`pwd`
+rm -f $TD/build/conf/local.conf
+rm -f $TD/build/conf/bblayers.conf
+echo "TEMPLATECONF=\"$TD/meta-radiodan/conf\"" > $TD/.templateconf
+
+echo "Radiodan environment has been bootstrapped -- you might want to tweak"
+echo "build/conf/local.conf to suite your requirements.
+echo "(NB: you do not need to run the bootstrap command again, and doing so"
+echo "will overwrite any changes you make to local.conf and bblayers.conf)"
+echo ""
+echo "To start a build, run the following commands:"
+echo ""
+echo "  . oe-init-build-env"
+echo "  bitbake radiodan-image"
