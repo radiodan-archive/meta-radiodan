@@ -3,11 +3,14 @@ LICENSE = "MIT"
 
 inherit packagegroup
 
-PACKAGES = "${PN} ${PN}-base ${PN}-ruby ${PN}-web ${PN}-support"
+PACKAGES = "${PN} ${PN}-base ${PN}-ruby ${PN}-web ${PN}-support ${PN}-tools"
 
-RDEPENDS_${PN} = "\
-    ${PN}-base \
-    ${PN}-ruby \
+RDEPENDS_${PN} = "	\
+    ${PN}-base		\
+    ${PN}-ruby		\
+    ${PN}-web		\
+    ${PN}-support	\
+    ${PN}-tools		\
     "
 
 SUMMARY_${PN}-base  = "Radiodan base packages"
@@ -33,4 +36,9 @@ SUMMARY_${PN}-support  = "Radiodan 'other' packages"
 RDEPENDS_${PN}-support = "\
     samba	          \
     zeromq		  \
+    "
+
+SUMMARY_${PN}-tools  = "Radiodan extra tools"
+RDEPENDS_${PN}-tools = "\
+    bootchart2	     	\
     "
