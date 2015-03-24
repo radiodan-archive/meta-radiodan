@@ -1,7 +1,17 @@
 TD=`pwd`
-rm -f $TD/build/conf/local.conf
-rm -f $TD/build/conf/bblayers.conf
+
+# Make backup copies of previous config
+if [ -f $TD/build/conf/local.conf ]; then
+   mv $TD/build/conf/local.conf $TD/build/conf/local.conf.$(date +%Y-%m-%d)
+fi
+
+if [ -f $TD/build/conf/bblayers.conf ]; then
+   mv $TD/build/conf/local.conf $TD/build/conf/bblayers.conf.$(date +%Y-%m-%d)
+fi
+
 echo "TEMPLATECONF=\"$TD/meta-radiodan/conf\"" > $TD/.templateconf
+git add $TD/.templateconf
+git commit -m "radiodan templateconf"
 
 echo ""
 echo "Radiodan environment has been bootstrapped -- you might want to tweak"
