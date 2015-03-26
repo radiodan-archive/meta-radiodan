@@ -7,16 +7,16 @@ DEPENDS = "avahi"
 
 SRC_URI = "file://http.service \
            file://smb.service  \
-           file://ssh.service  \
           "
 
-PACKAGES += "${PN}-http ${PN}-smb ${PN}-ssh"
+PACKAGES += "${PN}-http ${PN}-smb"
+
+ALLOW_EMPTY_${PN} = "1"
 
 RDEPENDS_${PN} = "             \
                   avahi-daemon \
                   ${PN}-http   \
                   ${PN}-smb    \
-                  ${PN}-ssh    \
                  "
 
 do_configure() {
@@ -27,10 +27,8 @@ do_install() {
     install -d ${D}${sysconfdir}/avahi/services
     install -m 0644 ${WORKDIR}/http.service ${D}${sysconfdir}/avahi/services/
     install -m 0644 ${WORKDIR}/smb.service ${D}${sysconfdir}/avahi/services/
-    install -m 0644 ${WORKDIR}/ssh.service ${D}${sysconfdir}/avahi/services/
 }
 
 FILES_${PN} = ""
 FILES_${PN}-http = "${sysconfdir}/avahi/services/http.service"
 FILES_${PN}-smb  = "${sysconfdir}/avahi/services/smb.service"
-FILES_${PN}-ssh  = "${sysconfdir}/avahi/services/ssh.service"
