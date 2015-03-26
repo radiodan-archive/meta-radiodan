@@ -18,6 +18,7 @@ RDEPENDS_${PN}-base = "\
     wpa-supplicant     \
     udev-extraconf     \
     avahi-services     \
+    hostapd            \
     "
 
 SUMMARY_${PN}-ruby  = "Radiodan ruby-related packages"
