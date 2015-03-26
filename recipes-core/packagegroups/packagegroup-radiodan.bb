@@ -37,6 +37,7 @@ SUMMARY_${PN}-support  = "Radiodan 'other' packages"
 RDEPENDS_${PN}-support = "\
     samba	          \
     zeromq		  \
+    dnsmasq		  \
     "
 
 SUMMARY_${PN}-tools  = "Radiodan extra tools"
