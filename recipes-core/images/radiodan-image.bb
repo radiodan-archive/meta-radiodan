@@ -1,6 +1,6 @@
 SUMMARY = "Radiodan image."
 
-IMAGE_FEATURES += "package-management ssh-server-dropbear hwcodecs"
+IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
 
 IMAGE_LINGUAS = " "
 
