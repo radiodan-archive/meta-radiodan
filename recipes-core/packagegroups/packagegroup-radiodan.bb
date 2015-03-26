@@ -17,7 +17,7 @@ SUMMARY_${PN}-base  = "Radiodan base packages"
 RDEPENDS_${PN}-base = "\
     wpa-supplicant     \
     udev-extraconf     \
-    avahi-daemon       \
+    avahi-services     \
     "
 
 SUMMARY_${PN}-ruby  = "Radiodan ruby-related packages"
