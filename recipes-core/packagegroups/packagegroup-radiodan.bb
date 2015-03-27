@@ -19,6 +19,7 @@ RDEPENDS_${PN}-base = "\
     udev-extraconf     \
     avahi-services     \
     hostapd            \
+    linux-firmware     \
     "
 
 SUMMARY_${PN}-ruby  = "Radiodan ruby-related packages"
@@ -39,6 +40,7 @@ RDEPENDS_${PN}-support = "\
     samba	          \
     zeromq		  \
     dnsmasq		  \
+    wifi-setup            \
     "
 
 SUMMARY_${PN}-tools  = "Radiodan extra tools"
