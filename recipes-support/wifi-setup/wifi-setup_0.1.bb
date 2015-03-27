@@ -5,10 +5,11 @@ SECTION = "network"
 
 RDEPENDS_${PN} = "wpa-supplicant hostapd ${PN}-cli-web ${PN}-conf-copier"
 
-SRC_URI = "file://try_adhoc_network \
-           file://rc.local          \
-           file://wpa-cli-web       \
-           file://wpa-conf-copier   \
+SRC_URI = "file://try_adhoc_network      \
+           file://rc.local               \
+           file://wpa-cli-web            \
+           file://wpa-conf-copier        \
+           file://radiodan-volatile.conf \
           "
 
 inherit update-rc.d
@@ -25,6 +26,10 @@ do_install() {
 
     install -d ${D}${sbindir}
     install -m 0700 ${WORKDIR}/try_adhoc_network ${D}${sbindir}/
+
+    install -d ${D}${sysconfdir}/default/volatiles
+    install -m 0644 ${WORKDIR}/radiodan-volatile.conf ${D}${sysconfdir}/default/volatiles/99_radiodan
+    sed -i 's,/var/,${localstatedir}/,g' ${D}${sysconfdir}/default/volatiles/99_radiodan
 }
 
 
