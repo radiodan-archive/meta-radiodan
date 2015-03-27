@@ -14,8 +14,9 @@ do_install_append() {
     install -m 0644 ${WORKDIR}/radiodan_client ${D}${sysconfdir}/${BPN}/sites-available
     install -m 0644 ${WORKDIR}/wpa_cli_web_redirect ${D}${sysconfdir}/${BPN}/sites-available
 
-    # Enable sites -- CURRENTLY NOTHING IS ENABLED
-    # ln -snf ${sysconfdir}/${BPN}/sites-available/radiodan_client ${D}${sysconfdir}/${BPN}/sites-enabled/radiodan_client
+    # Enable sites
+    # NB: these are mutually exclussive; the default site is radiodan_client
+    ln -snf ${sysconfdir}/${BPN}/sites-available/radiodan_client ${D}${sysconfdir}/${BPN}/sites-enabled/radiodan_client
     # ln -snf ${sysconfdir}/${BPN}/sites-available/wpa_cli_web_redirect ${D}${sysconfdir}/${BPN}/sites-enabled/wpa_cli_web_redirect
 
 
