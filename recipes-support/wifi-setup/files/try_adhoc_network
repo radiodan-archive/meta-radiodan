@@ -1,0 +1,84 @@
+#!/bin/sh
+# RPi Network Conf Bootstrapper
+echo "RPi Network Conf Bootstrapper:"
+echo `date`
+
+createAdHocNetwork(){
+  echo "Creating ad-hoc network"
+
+  # Wait long enough for wpa_cli to do a thorough scan
+  echo "Starting an access point scan"
+  # Do 6 scans over 1 min
+  for i in {1..6}
+  do
+    echo "Scan $i of 6"
+    /usr/sbin/wpa_cli scan
+    /bin/sleep 10
+  done
+
+  echo "Setting up hostapd access point..."
+  /usr/sbin/hostapd -B /etc/hostapd.conf
+  /bin/sleep 2
+
+  echo "Configuring IP..."
+  ifconfig wlan0 10.0.0.200 netmask 255.0.0.0
+  /bin/sleep 2
+}
+
+showAccessPoint() {
+  oldConfig=/etc/nginx/sites-enabled/radiodan_client
+  if [ -h ${oldConfig} ]
+  then
+    /bin/rm ${oldConfig}
+  fi
+
+  /bin/ln -sf /etc/nginx/sites-available/wpa_cli_web_redirect /etc/nginx/sites-enabled/wpa_cli_web_redirect
+
+  /etc/init.d/nginx reload
+}
+
+showRadiodanClient() {
+  oldConfig=/etc/nginx/sites-enabled/wpa_cli_web_redirect
+  newConfig=/etc/nginx/sites-enabled/radiodan_client
+
+  if [ -h ${oldConfig} ]
+  then
+    /bin/rm ${oldConfig}
+  fi
+
+  if [ ! -h ${newConfig} ]
+  then
+    /bin/ln -sf /etc/nginx/sites-available/radiodan_client /etc/nginx/sites-enabled/radiodan_client
+    /etc/init.d/nginx reload
+  fi
+}
+
+
+# Exit early if no wifi dongle
+wifiInterface=$(/sbin/ifconfig | /bin/grep -F wlan0)
+if [ -z "$wifiInterface" ]
+then
+  echo "No wifi adapter connected, exiting"
+  showRadiodanClient
+  exit
+else
+  echo "Wifi adapter connected"
+fi
+
+connected=$(/usr/sbin/wpa_cli status | /bin/grep COMPLETED)
+if [ -z "$connected" ]
+then
+  createAdHocNetwork
+
+  echo "Starting wpa-cli-web"
+  /etc/init.d/wpa-cli-web start
+
+  echo "Starting DNSMasq"
+  /etc/init.d/dnsmasq start
+
+  echo "Symlink Access Point"
+  showAccessPoint
+else
+  showRadiodanClient
+fi
+
