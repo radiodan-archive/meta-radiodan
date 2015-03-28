@@ -15,7 +15,9 @@ do_install_append () {
 FILES_${PN} += "/media/music"
 
 pkg_postinst_${PN}_append () {
-    if [ -n "$D" ]; then
+    if [ "x$D" = "x" ]; then
         /usr/bin/yes pi | smbpasswd -a -s pi
+    else
+       exit 1
     fi
 }
