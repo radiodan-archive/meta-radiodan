@@ -7,6 +7,38 @@ SRC_URI += "file://radiodan404.html     \
 	    file://nginx.conf           \
            "
 
+do_configure () {
+	if [ "${SITEINFO_BITS}" = "64" ]; then
+		PTRSIZE=8
+	else
+		PTRSIZE=4
+	fi
+
+	echo $CFLAGS
+	echo $LDFLAGS
+
+	./configure \
+	--crossbuild=Linux:${TUNE_ARCH} \
+	--with-endian=${@base_conditional('SITEINFO_ENDIANNESS', 'le', 'little', 'big', d)} \
+	--with-int=4 \
+	--with-long=${PTRSIZE} \
+	--with-long-long=8 \
+	--with-ptr-size=${PTRSIZE} \
+	--with-sig-atomic-t=${PTRSIZE} \
+	--with-size-t=${PTRSIZE} \
+	--with-off-t=${PTRSIZE} \
+	--with-time-t=${PTRSIZE} \
+	--with-sys-nerr=132 \
+	--conf-path=${sysconfdir}/nginx/nginx.conf \
+	--http-log-path=${localstatedir}/log/nginx/access.log \
+	--error-log-path=${localstatedir}/log/nginx/error.log \
+	--pid-path=/run/nginx/nginx.pid \
+	--prefix=${prefix} \
+	--with-http_ssl_module \
+	--with-http_gzip_static_module \
+	--with-http_sub_module
+}
+
 do_install_append() {
     # Install site files
     install -d ${D}${sysconfdir}/${BPN}/sites-available
