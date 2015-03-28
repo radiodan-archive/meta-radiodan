@@ -20,6 +20,7 @@ RDEPENDS_${PN}-base = "\
     avahi-services     \
     hostapd            \
     linux-firmware     \
+    kbd-keymaps        \
     "
 
 SUMMARY_${PN}-ruby  = "Radiodan ruby-related packages"
