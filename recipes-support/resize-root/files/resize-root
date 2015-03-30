@@ -1,0 +1,80 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          resize-root
+# Required-Start:
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: Resize root partitition and file system
+# Description:       Resize root partitition and file system
+### END INIT INFO
+
+export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
+
+DEV="mmcblk0"
+PARTNO="2"
+PART="${DEV}p${PARTNO}"
+
+# We want a persistent log, so we can do a post-mortem on failure when we
+# are unable to get to login
+LOG=/resize.log
+
+resize_partition() {
+    # start with a clean log
+    rm -f $LOG
+
+    # NB: the second fdisk will finish with an error, because the we the kernel
+    #     will not re-read the partition table for the rootfs; however, the
+    #     new partition table will be successfully written.
+    P2S=$(fdisk -l /dev/$DEV | grep $PART | awk '{print $2}')
+    echo "Root partition starts at $P2S -- resizing" >> $LOG
+    echo -e "d\n$PARTNO\nn\np\n$PARTNO\n$P2S\n\nw\n" | fdisk /dev/$DEV 2>&1 >> $LOG
+    # add the partition-resized marker
+    touch /.presized
+}
+
+resize_rootfs() {
+    if [ -f "/.presized" ]; then
+        echo "Resizing root filesystem" >> $LOG
+        resize2fs /dev/$PART 2>&1 >> $LOG && mv /.presized /.fsresized
+    else
+        echo "Partition not resized -- skipping FS resize" 2>&1 >> $LOG
+    fi
+}
+
+do_start() {
+    if [ -f "/.fsresized" ]; then
+	echo "Root file system resize already done, nothing to do."
+	rm -f $LOG
+    elif [ -f "/.presized" ]; then
+	echo -n "Attempting to resize root file system: "
+        resize_rootfs
+	echo "done."
+    else
+	echo -n "Attempting to resize root partion: "
+        resize_partition
+	echo "done, rebooting ..."
+        shutdown -r now
+    fi
+}
+
+case "$1" in
+    start)
+	do_start
+	exit 0
+        ;;
+    restart|reload|force-reload)
+        echo "Error: argument '$1' not supported" >&2
+        exit 3
+        ;;
+    stop|status)
+        # No-op
+        exit 0
+        ;;
+    *)
+        echo "Usage: $0 start|stop" >&2
+        exit 3
+        ;;
+esac
+
+exit 0
