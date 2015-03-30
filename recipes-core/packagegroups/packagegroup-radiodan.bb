@@ -28,6 +28,7 @@ SUMMARY_${PN}-ruby  = "Radiodan ruby-related packages"
 RDEPENDS_${PN}-ruby = "\
     ruby	       \
     bundler	       \
+    radiodan-gemset    \
     "
 
 SUMMARY_${PN}-web  = "Radiodan web-related packages"
