@@ -21,6 +21,7 @@ RDEPENDS_${PN}-base = "\
     hostapd            \
     linux-firmware     \
     kbd-keymaps        \
+    resize-root	       \
     "
 
 SUMMARY_${PN}-ruby  = "Radiodan ruby-related packages"
