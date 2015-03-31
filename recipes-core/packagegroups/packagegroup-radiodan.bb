@@ -21,6 +21,8 @@ RDEPENDS_${PN} = "	\
     ${PN}-devtools	\
     "
 
+# sudo is needed because of the wpa-cli gem
+
 SUMMARY_${PN}-base  = "Radiodan base packages"
 RDEPENDS_${PN}-base = "\
     wpa-supplicant     \
@@ -30,6 +32,7 @@ RDEPENDS_${PN}-base = "\
     linux-firmware     \
     kbd-keymaps        \
     resize-root	       \
+    sudo               \
     "
 
 SUMMARY_${PN}-ruby  = "Radiodan ruby-related packages"
