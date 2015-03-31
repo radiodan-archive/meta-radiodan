@@ -52,9 +52,11 @@ do_install_append() {
     # ln -snf ${sysconfdir}/${BPN}/sites-available/wpa_cli_web_redirect ${D}${sysconfdir}/${BPN}/sites-enabled/wpa_cli_web_redirect
 
 
-    install -d ${D}opt/radiodan/static/
-    install -m 0644 ${WORKDIR}/status511.html ${D}opt/radiodan/static/status511.html
-    install -m 0644 ${WORKDIR}/radiodan404.html ${D}opt/radiodan/static/radiodan404.html
+    install -d ${D}/opt/radiodan/static/
+    install -m 0644 ${WORKDIR}/status511.html ${D}/opt/radiodan/static/status511.html
+    install -m 0644 ${WORKDIR}/radiodan404.html ${D}/opt/radiodan/static/radiodan404.html
 
     rm -f ${D}${sysconfdir}/${BPN}/*.default
 }
+
+FILES_${PN} += "/opt"
