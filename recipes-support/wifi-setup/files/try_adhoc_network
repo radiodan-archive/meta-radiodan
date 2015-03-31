@@ -8,12 +8,12 @@ createAdHocNetwork(){
 
   # Wait long enough for wpa_cli to do a thorough scan
   echo "Starting an access point scan"
-  # Do 6 scans over 1 min
-  for i in {1..6}
+  # Do 3 scans over 15s min
+  for i in {1..3}
   do
-    echo "Scan $i of 6"
+    echo "Scan $i of 3"
     /usr/sbin/wpa_cli scan
-    /bin/sleep 10
+    /bin/sleep 5
   done
 
   echo "Setting up hostapd access point..."
@@ -65,9 +65,18 @@ else
   echo "Wifi adapter connected"
 fi
 
+associating=$(/usr/sbin/wpa_cli status | /bin/grep -e "ASSOCIATING\|SCANNING")
+wating=
+while [ "x$associating" != "x" ] && [ "$wating" != ".........." ]; do
+  echo "Associating ($associating) -- waiting"
+  sleep 5
+  associating=$(/usr/sbin/wpa_cli status | /bin/grep -e "ASSOCIATING\|SCANNING")
+done
+
 connected=$(/usr/sbin/wpa_cli status | /bin/grep COMPLETED)
-if [ -z "$connected" ]
-then
+if [ "x$connected" != "x" ]; then
+    showRadiodanClient
+else
   createAdHocNetwork
 
   echo "Starting wpa-cli-web"
@@ -78,7 +87,5 @@ then
 
   echo "Symlink Access Point"
   showAccessPoint
-else
-  showRadiodanClient
 fi
 

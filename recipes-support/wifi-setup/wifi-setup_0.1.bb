@@ -50,4 +50,4 @@ INITSCRIPT_NAME_${PN}-conf-copier = "wpa-conf-copier"
 INITSCRIPT_PARAMS_${PN}-conf-copier = "defaults 01 99"
 
 INITSCRIPT_NAME_${PN}-try-adhoc = "wpa-try-adhoc"
-INITSCRIPT_PARAMS_${PN}-try-adhoc = "defaults 99 99"
+INITSCRIPT_PARAMS_${PN}-try-adhoc = "defaults 98 98"
