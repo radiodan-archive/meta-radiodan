@@ -3,7 +3,14 @@ LICENSE = "MIT"
 
 inherit packagegroup
 
-PACKAGES = "${PN} ${PN}-base ${PN}-ruby ${PN}-web ${PN}-support ${PN}-tools"
+PACKAGES = "${PN}          \
+            ${PN}-base     \
+            ${PN}-ruby     \
+            ${PN}-web      \
+            ${PN}-support  \
+            ${PN}-tools    \
+            ${PN}-devtools \
+           "
 
 RDEPENDS_${PN} = "	\
     ${PN}-base		\
@@ -11,6 +18,7 @@ RDEPENDS_${PN} = "	\
     ${PN}-web		\
     ${PN}-support	\
     ${PN}-tools		\
+    ${PN}-devtools	\
     "
 
 SUMMARY_${PN}-base  = "Radiodan base packages"
@@ -49,4 +57,24 @@ RDEPENDS_${PN}-support = "\
 SUMMARY_${PN}-tools  = "Radiodan extra tools"
 RDEPENDS_${PN}-tools = "\
     bootchart2	     	\
+    util-linux-sfdisk   \
+    parted              \
+    "
+
+SUMMARY_${PN}-devtools  = "Radiodan developer tools"
+RDEPENDS_${PN}-devtools = "          \
+    packagegroup-core-buildessential \
+    coreutils                        \
+    ccache                           \
+    diffutils                        \
+    intltool                         \
+    perl-module-re                   \
+    perl-module-text-wrap            \
+    findutils                        \
+    quilt                            \
+    less                             \
+    ldd                              \
+    file                             \
+    tcl                              \
+    git                              \
     "
