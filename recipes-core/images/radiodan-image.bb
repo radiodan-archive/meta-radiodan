@@ -16,11 +16,10 @@ CORE_IMAGE_EXTRA_INSTALL = "packagegroup-radiodan"
 
 inherit core-image
 
-do_rootfs[depends] += "radiodan-minifs:do_build"
-
-fakeroot do_add_minifs() {
-	cp ${DEPLOY_DIR_IMAGE}/radiodan-minifs-${MACHINE}.ext4 \
-           ${WORKDIR}/rootfs/radiodan-minifs.ext4
-}
-
-ROOTFS_POSTPROCESS_COMMAND += "do_add_minifs; "
+#do_rootfs[depends] += "radiodan-minifs:do_build"
+#
+#fakeroot do_add_minifs() {
+#	cp ${DEPLOY_DIR_IMAGE}/radiodan-minifs-${MACHINE}.ext4 ${WORKDIR}/rootfs/radiodan-minifs.ext4
+#}
+#
+#ROOTFS_POSTPROCESS_COMMAND += "do_add_minifs; "
