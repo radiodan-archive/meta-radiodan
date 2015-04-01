@@ -3,22 +3,24 @@ LICENSE = "MIT"
 
 inherit packagegroup
 
-PACKAGES = "${PN}          \
-            ${PN}-base     \
-            ${PN}-ruby     \
-            ${PN}-web      \
-            ${PN}-support  \
-            ${PN}-tools    \
-            ${PN}-devtools \
+PACKAGES = "${PN}               \
+            ${PN}-base          \
+            ${PN}-ruby          \
+            ${PN}-web           \
+            ${PN}-support       \
+            ${PN}-tools         \
+            ${PN}-devtools      \
+            ${PN}-radiodan-apps \
            "
 
-RDEPENDS_${PN} = "	\
-    ${PN}-base		\
-    ${PN}-ruby		\
-    ${PN}-web		\
-    ${PN}-support	\
-    ${PN}-tools		\
-    ${PN}-devtools	\
+RDEPENDS_${PN} = "      \
+    ${PN}-base	        \
+    ${PN}-ruby	        \
+    ${PN}-web	        \
+    ${PN}-support       \
+    ${PN}-tools	        \
+    ${PN}-devtools      \
+    ${PN}-radiodan-apps	\
     "
 
 # sudo is needed because of the wpa-cli gem
@@ -80,4 +82,9 @@ RDEPENDS_${PN}-devtools = "          \
     file                             \
     tcl                              \
     git                              \
+    "
+
+SUMMARY_${PN}-radiodan-apps  = "Radiodan Applications"
+RDEPENDS_${PN}-radiodan-apps = "\
+    radiodan-apps               \
     "
