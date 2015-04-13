@@ -5,6 +5,8 @@ SRCBRANCH = "stable"
 
 require radiodan-app.inc
 
+inherit allarch
+
 do_install_append() {
     cd ${D}/opt/radiodan/apps/magic-button/releases/0/config
     ln -s radiodan-config.json.example radiodan-config.json
