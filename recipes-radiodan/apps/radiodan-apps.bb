@@ -8,7 +8,7 @@ ALLOW_EMPTY_${PN} = "1"
 inherit allarch
 
 NODEJS_APPS = "radiodan-server magic-button"
-GO_APPS = "radiodan-debug"
+GO_APPS = "radiodan-debug radiodan-cease"
 
 DEPENDS = "nodejs-native ${NODEJS_APPS}"
 RDEPENDS_${PN} = "${NODEJS_APPS} ${GO_APPS}"
