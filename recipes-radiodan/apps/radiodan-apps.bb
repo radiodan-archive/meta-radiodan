@@ -25,7 +25,8 @@ do_install() {
    for app in ${NODEJS_APPS}; do
      echo "Doing npm install in ${STAGING_DATADIR}/radiodan/packages/${app}"
      cd ${STAGING_DATADIR}/radiodan/packages/${app}
-     npm install
+     npm install --arch=${TARGET_ARCH}
+
      cp -R node_modules/* ${pfx}
    done
 }
