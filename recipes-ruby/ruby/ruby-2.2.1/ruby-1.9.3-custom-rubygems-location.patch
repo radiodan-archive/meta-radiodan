@@ -1,21 +1,10 @@
-From 279a693ce4ef3a887ce8d4fa59e0f2616a14d91a Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?V=C3=ADt=20Ondruch?= <vondruch@redhat.com>
-Date: Fri, 11 Nov 2011 13:14:45 +0100
-Subject: [PATCH] Allow to install RubyGems into custom location, outside of
- Ruby tree.
-
----
- configure.in      |    8 ++++++++
- tool/mkconfig.rb  |    1 +
- tool/rbinstall.rb |    9 +++++++++
- version.c         |    4 ++++
- 4 files changed, 22 insertions(+)
-
---- a/configure.in
-+++ b/configure.in
-@@ -2801,6 +2801,13 @@
-     dir="${VENDOR_DIR}"
- done
+Index: ruby-2.2.1/configure.in
+===================================================================
+--- ruby-2.2.1.orig/configure.in
++++ ruby-2.2.1/configure.in
+@@ -4051,6 +4051,13 @@ AC_ARG_WITH(vendorarchdir,
+             [vendorarchdir=$withval],
+             [vendorarchdir=${multiarch+'${rubysitearchprefix}/vendor_ruby/${ruby_version}'}${multiarch-'${vendorlibdir}/${sitearch}'}])
  
 +AC_ARG_WITH(rubygemsdir,
 +           AS_HELP_STRING([--with-rubygemsdir=DIR], [custom rubygems directory]),
@@ -26,39 +15,50 @@ Subject: [PATCH] Allow to install RubyGems into custom location, outside of
 +
  if test "${LOAD_RELATIVE+set}"; then
      AC_DEFINE_UNQUOTED(LOAD_RELATIVE, $LOAD_RELATIVE)
-     RUBY_EXEC_PREFIX=""
-@@ -2921,6 +2928,7 @@
- AC_SUBST(rubyhdrdir)dnl
- AC_SUBST(sitehdrdir)dnl
- AC_SUBST(vendorhdrdir)dnl
+     RUBY_EXEC_PREFIX=''
+@@ -4151,6 +4158,7 @@ AC_SUBST(vendorhdrdir)dnl
+ AC_SUBST(rubyarchhdrdir)dnl
+ AC_SUBST(sitearchhdrdir)dnl
+ AC_SUBST(vendorarchhdrdir)dnl
 +AC_SUBST(rubygemsdir)dnl
  
- AC_ARG_WITH(opt-dir,
- 	AS_HELP_STRING([--with-opt-dir=DIR], [add optional headers and libraries DIR]))
---- a/tool/mkconfig.rb
-+++ b/tool/mkconfig.rb
-@@ -78,6 +78,7 @@
-     when /^RUBY_SO_NAME$/; next if $so_name
+ AC_ARG_WITH(mantype,
+ 	AS_HELP_STRING([--with-mantype=TYPE], [specify man page type; TYPE is one of man and doc]),
+Index: ruby-2.2.1/loadpath.c
+===================================================================
+--- ruby-2.2.1.orig/loadpath.c
++++ ruby-2.2.1/loadpath.c
+@@ -82,6 +82,10 @@ const char ruby_initial_load_paths[] =
+     RUBY_VENDOR_LIB "\0"
+ #endif
+ 
++#ifdef RUBYGEMS_DIR
++    RUBYGEMS_DIR "\0"
++#endif
++
+     RUBY_LIB "\0"
+ #ifdef RUBY_THINARCH
+     RUBY_ARCH_LIB_FOR(RUBY_THINARCH) "\0"
+Index: ruby-2.2.1/tool/mkconfig.rb
+===================================================================
+--- ruby-2.2.1.orig/tool/mkconfig.rb
++++ ruby-2.2.1/tool/mkconfig.rb
+@@ -81,6 +81,7 @@ File.foreach "config.status" do |line|
+     when /^RUBY_SO_NAME$/; next vars[name] = (so_name = val).dup if $so_name
      when /^arch$/; if val.empty? then val = arch else arch = val end
-     when /^sitearch/; val = '$(arch)' if val.empty?
+     when /^sitearch$/; val = '$(arch)' if val.empty?
 +    when /^rubygemsdir/; next if val.empty?
      end
      case val
      when /^\$\(ac_\w+\)$/; next
---- a/tool/rbinstall.rb
-+++ b/tool/rbinstall.rb
-@@ -300,6 +300,7 @@
- sitearchlibdir = CONFIG["sitearchdir"]
- vendorlibdir = CONFIG["vendorlibdir"]
- vendorarchlibdir = CONFIG["vendorarchdir"]
-+rubygemsdir = CONFIG["rubygemsdir"]
- mandir = CONFIG["mandir"]
- capidir = CONFIG["docdir"]
- configure_args = Shellwords.shellwords(CONFIG["configure_args"])
-@@ -487,7 +488,15 @@
+Index: ruby-2.2.1/tool/rbinstall.rb
+===================================================================
+--- ruby-2.2.1.orig/tool/rbinstall.rb
++++ ruby-2.2.1/tool/rbinstall.rb
+@@ -505,7 +505,15 @@ end
  install?(:local, :comm, :lib) do
    prepare "library scripts", rubylibdir
-   noinst = %w[README* *.txt *.rdoc]
+   noinst = %w[README* *.txt *.rdoc *.gemspec]
 +  noinst += %w[*ubygems.rb rubygems/ datadir.rb] if rubygemsdir
    install_recursive(File.join(srcdir, "lib"), rubylibdir, :no_install => noinst, :mode => $data_mode)
 +  if rubygemsdir
@@ -70,17 +70,4 @@ Subject: [PATCH] Allow to install RubyGems into custom location, outside of
 +  end
  end
  
- install?(:local, :arch, :lib) do
---- a/version.c
-+++ b/version.c
-@@ -97,6 +97,10 @@
- #endif
- #endif
- 
-+#ifdef RUBYGEMS_DIR
-+    RUBYGEMS_DIR "\0"
-+#endif
-+
-     RUBY_LIB "\0"
- #ifdef RUBY_THIN_ARCHLIB
-     RUBY_THIN_ARCHLIB "\0"
+ install?(:local, :comm, :hdr, :'comm-hdr') do
