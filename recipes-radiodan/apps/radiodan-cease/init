@@ -17,14 +17,14 @@ export NODE_PATH=$NODE_PATH:/usr/lib/node_modules
 NAME=radiodan-cease
 PIDFILE=/var/run/radiodan/$NAME.pid
 #This is the command to be run, give the full pathname
-DAEMON=/opt/radiodan/apps/cease/current/cease
+DAEMON=/opt/radiodan/apps/radiodan-cease/current/cease
 
 export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
 
 case "$1" in
   start)
     echo -n "Starting daemon: "$NAME
-    start-stop-daemon --start --quiet --background --make-pidfile --pidfile $PIDFILE --exec $DAEMON -- $DAEMON_OPTS > /var/log/$NAME.log 2>&1
+    start-stop-daemon --start --quiet --background --make-pidfile --pidfile $PIDFILE --exec $DAEMON -- $DAEMON_OPTS > /var/log/radiodan/$NAME.log 2>&1
     echo "."
     ;;
   stop)
