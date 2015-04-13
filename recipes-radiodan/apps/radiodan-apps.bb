@@ -7,10 +7,11 @@ ALLOW_EMPTY_${PN} = "1"
 
 inherit allarch
 
-THE_APPS = "radiodan-server magic-button"
+NODEJS_APPS = "radiodan-server magic-button"
+GO_APPS = "radiodan-debug"
 
-DEPENDS = "nodejs-native ${THE_APPS}"
-RDEPENDS_${PN} = "${THE_APPS}"
+DEPENDS = "nodejs-native ${NODEJS_APPS}"
+RDEPENDS_${PN} = "${NODEJS_APPS} ${GO_APPS}"
 
 do_configure() {
     cp ${TOPDIR}/../meta/COPYING.MIT ${S}
@@ -21,7 +22,7 @@ do_install() {
    set -e
    pfx="${D}${libdir}/node_modules"
    install -d ${pfx}
-   for app in ${THE_APPS}; do
+   for app in ${NODEJS_APPS}; do
      echo "Doing npm install in ${STAGING_DATADIR}/radiodan/packages/${app}"
      cd ${STAGING_DATADIR}/radiodan/packages/${app}
      npm install

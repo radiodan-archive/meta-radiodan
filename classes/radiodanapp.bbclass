@@ -1,6 +1,3 @@
-
-RDEPENDS_${PN} += "nodejs nodejs-npm"
-
 def rda_metadata(d):
     src_uri = "http://deploy.radiodan.net/"
     try:
@@ -32,15 +29,9 @@ radiodanapp_do_install() {
     DIR="/opt/radiodan/apps/${PN}/releases/0"
     install -d ${D}${DIR}
     echo -e "{\"name\":\"radiodan/${PN}\",\"ref\":\"${SRCBRANCH}\",\"commit\":\"\"}" > ${D}${DIR}/.deploy
-    cp -R ${S}/* ${D}${DIR}
 
     cd ${D}/opt/radiodan/apps/${PN}
     ln -sf releases/0 current
-
-    # Stage the package.json file, so we can later use this to install
-    # dependencies
-    install -d ${D}${datadir}/radiodan/packages/${PN}
-    cp ${S}/package.json ${D}${datadir}/radiodan/packages/${PN}
 }
 
 pkg_postrm_${PN} () {

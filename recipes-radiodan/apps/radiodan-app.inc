@@ -11,7 +11,7 @@ SRC_URI   = "git://github.com/radiodan/${SRCREPO};branch=${SRCBRANCH} \
 
 S = "${WORKDIR}/git"
 
-inherit radiodanapp update-rc.d
+inherit update-rc.d
 
 PACKAGES += "${PN}-init"
 

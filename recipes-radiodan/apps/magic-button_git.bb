@@ -5,7 +5,7 @@ SRCBRANCH = "stable"
 
 require radiodan-app.inc
 
-inherit allarch
+inherit radiodannode allarch
 
 do_install_append() {
     cd ${D}/opt/radiodan/apps/magic-button/releases/0/config
