@@ -66,9 +66,10 @@ else
 fi
 
 associating=$(/usr/sbin/wpa_cli status | /bin/grep -e "ASSOCIATING\|SCANNING")
-wating=
-while [ "x$associating" != "x" ] && [ "$wating" != ".........." ]; do
+waiting=
+while [ "x$associating" != "x" ] && [ "$waiting" != ".........." ]; do
   echo "Associating ($associating) -- waiting"
+  waiting="${waiting}."
   sleep 5
   associating=$(/usr/sbin/wpa_cli status | /bin/grep -e "ASSOCIATING\|SCANNING")
 done
