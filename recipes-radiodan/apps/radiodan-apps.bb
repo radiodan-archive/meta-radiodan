@@ -5,9 +5,9 @@ SECTION = "radiodan"
 
 ALLOW_EMPTY_${PN} = "1"
 
-inherit allarch
+#inherit allarch
 
-NODEJS_APPS = "radiodan-server magic-button"
+NODEJS_APPS = "radiodan-server magic-button radiodan-buttons"
 GO_APPS = "radiodan-debug radiodan-cease"
 
 DEPENDS = "nodejs-native ${NODEJS_APPS}"
