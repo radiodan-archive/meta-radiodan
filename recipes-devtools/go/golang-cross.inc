@@ -7,12 +7,6 @@ SRC_URI = "http://golang.org/dl/go${PV}.src.tar.gz"
 S="${WORKDIR}/go"
 
 do_compile () {
-	export CC_FOR_TARGET="${CC}"
-	export CXX_FOR_TARGET="${CXX}"
-	# the above should set the right sysroot option, else...:
-	# export CGO_CFLAGS="--sysroot=${STAGING_DIR_HOST}"
-	# export CGO_LDFLAGS="--sysroot=${STAGING_DIR_HOST}"
-
 	export CC="${BUILD_CC}"
 	export GOROOT_FINAL="${libdir}/go"
 	export GOARCH="${TARGET_ARCH}"
@@ -35,8 +29,8 @@ do_compile () {
 	export GO_LDFLAGS=""
 	export GO_CCFLAGS=""
 	export CGO_ENABLED="1"
-	#export CC_FOR_TARGET="${TARGET_SYS}-gcc"
-	#export CXX_FOR_TARGET="${TARGET_SYS}-g++"
+	export CC_FOR_TARGET="${TARGET_SYS}-gcc ${TARGET_CC_ARCH}"
+	export CXX_FOR_TARGET="${TARGET_SYS}-g++ ${TARGET_CC_ARCH}"
 	echo GOARCH ${GOARCH}
 	echo CC_FOR_TARGET ${CC_FOR_TARGET}
 
