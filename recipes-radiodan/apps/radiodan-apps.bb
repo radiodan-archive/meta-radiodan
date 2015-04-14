@@ -5,7 +5,7 @@ SECTION = "radiodan"
 
 ALLOW_EMPTY_${PN} = "1"
 
-NODEJS_APPS = "radiodan-server magic-button radiodan-buttons radiodan-example"
+NODEJS_APPS = "radiodan-server radiodan-magic radiodan-buttons radiodan-example"
 GO_APPS = "radiodan-debug radiodan-cease radiodan-updater"
 
 DEPENDS = "nodejs-native ${NODEJS_APPS}"

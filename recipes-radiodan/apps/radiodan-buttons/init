@@ -19,7 +19,7 @@ NAME=radiodan-buttons
 PIDFILE=/var/run/radiodan/$NAME.pid
 #This is the command to be run, give the full pathname
 DAEMON=/opt/radiodan/apps/radiodan-buttons/current/bin/server
-DAEMON_OPTS="/opt/radiodan/apps/magic-button/current/config/physical-ui-config.json"
+DAEMON_OPTS="/opt/radiodan/apps/radiodan-magic/current/config/physical-ui-config.json"
 
 export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
 
