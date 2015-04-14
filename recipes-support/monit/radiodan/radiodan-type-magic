@@ -1,0 +1,15 @@
+# Radiodan services
+check process radiodan-server with pidfile /var/run/radiodan/radiodan-server.pid
+  group radiodan
+  start program = "/etc/init.d/radiodan-server start"
+  stop program = "/etc/init.d/radiodan-server stop"
+
+check process radiodan-magic with pidfile /var/run/radiodan/radiodan-magic.pid
+  group radiodan
+  start program = "/etc/init.d/radiodan-magic start"
+  stop program = "/etc/init.d/radiodan-magic stop"
+
+check process radiodan-buttons with pidfile /var/run/radiodan/radiodan-buttons.pid
+  group radiodan
+  start program = "/etc/init.d/radiodan-buttons start"
+  stop program = "/etc/init.d/radiodan-buttons stop"
