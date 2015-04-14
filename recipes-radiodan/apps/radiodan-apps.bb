@@ -5,10 +5,8 @@ SECTION = "radiodan"
 
 ALLOW_EMPTY_${PN} = "1"
 
-#inherit allarch
-
-NODEJS_APPS = "radiodan-server magic-button radiodan-buttons"
-GO_APPS = "radiodan-debug radiodan-cease"
+NODEJS_APPS = "radiodan-server magic-button radiodan-buttons radiodan-example"
+GO_APPS = "radiodan-debug radiodan-cease radiodan-updater"
 
 DEPENDS = "nodejs-native ${NODEJS_APPS}"
 RDEPENDS_${PN} = "${NODEJS_APPS} ${GO_APPS}"
@@ -42,3 +40,7 @@ do_install() {
 }
 
 FILES_${PN} = "${libdir}/node_modules"
+FILES_${PN}-dbg += "${libdir}/node_modules/*/*/*/.debug \
+                    ${libdir}/node_modules/*/*/*/*/.debug \
+                   "
+FILES_${PN}-staticdev += "${libdir}/node_modules/*/*/*.a"
