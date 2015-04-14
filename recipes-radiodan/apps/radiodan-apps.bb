@@ -13,6 +13,16 @@ GO_APPS = "radiodan-debug radiodan-cease"
 DEPENDS = "nodejs-native ${NODEJS_APPS}"
 RDEPENDS_${PN} = "${NODEJS_APPS} ${GO_APPS}"
 
+# Borrowed from the nodejs recipes
+def map_nodejs_arch(a, d):
+    import re
+
+    if   re.match('p(pc|owerpc)(|64)', a): return 'ppc'
+    elif re.match('i.86$', a): return 'ia32'
+    elif re.match('x86_64$', a): return 'x64'
+    elif re.match('arm64$', a): return 'arm'
+    return a
+
 do_configure() {
     cp ${TOPDIR}/../meta/COPYING.MIT ${S}
 }
@@ -25,7 +35,7 @@ do_install() {
    for app in ${NODEJS_APPS}; do
      echo "Doing npm install in ${STAGING_DATADIR}/radiodan/packages/${app}"
      cd ${STAGING_DATADIR}/radiodan/packages/${app}
-     npm install --arch=${TARGET_ARCH}
+     npm install --arch=${@map_nodejs_arch(d.getVar('TARGET_ARCH', True), d)}
 
      cp -R node_modules/* ${pfx}
    done
