@@ -13,6 +13,7 @@ do_install_append() {
     # dereference the link and then choke on the file because of the 'example'
     # extension
     mv radiodan-config.json.example radiodan-config.json
+    mv physical-ui-config.json.example physical-ui-config.json
 }
 
 INITSCRIPT_PACKAGES = ""
