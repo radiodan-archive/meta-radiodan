@@ -1,4 +1,4 @@
-SUMMARY = "Radiodan server"
+SUMMARY = "Radiodan debug server"
 
 SRCREV    = "2a47f043ed114bea397c0a41809522879d198f10"
 SRCBRANCH = "stable"
