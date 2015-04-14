@@ -14,3 +14,5 @@ do_install_append() {
     # extension
     mv radiodan-config.json.example radiodan-config.json
 }
+
+INITSCRIPT_PACKAGES = ""

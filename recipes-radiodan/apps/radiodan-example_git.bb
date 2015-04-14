@@ -12,6 +12,8 @@ DEPENDS += "avahi"
 
 inherit radiodannode allarch
 
-do_install_append(){
-   sed -e 's/TheThingSystem/tthef/g' -i ${D}${datadir}/radiodan/packages/${PN}/package.json
-}
+#do_install_append(){
+#   sed -e 's/TheThingSystem/tthef/g' -i ${D}${datadir}/radiodan/packages/${PN}/package.json
+#}
+
+INITSCRIPT_PACKAGES = ""
