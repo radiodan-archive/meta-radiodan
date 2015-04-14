@@ -9,5 +9,8 @@ inherit radiodannode allarch
 
 do_install_append() {
     cd ${D}/opt/radiodan/apps/magic-button/releases/0/config
-    ln -s radiodan-config.json.example radiodan-config.json
+    # We have to rename this file rather than make a link as node 0.10 will
+    # dereference the link and then choke on the file because of the 'example'
+    # extension
+    mv radiodan-config.json.example radiodan-config.json
 }
