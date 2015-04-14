@@ -10,3 +10,5 @@ require radiodan-app.inc
 LIC_FILES_CHKSUM = "file://README.markdown;md5=bca49df90d35123676138e82a824e2c8"
 
 inherit radiodannode allarch
+
+INITSCRIPT_PACKAGES = ""
