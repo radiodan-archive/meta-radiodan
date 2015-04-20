@@ -19,7 +19,6 @@ RDEPENDS_${PN} = "      \
     ${PN}-web	        \
     ${PN}-support       \
     ${PN}-tools	        \
-    ${PN}-devtools      \
     ${PN}-radiodan-apps	\
     "
 
