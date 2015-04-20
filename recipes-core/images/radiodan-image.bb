@@ -1,7 +1,8 @@
 SUMMARY = "Radiodan image."
+DESCRIPTION = "Basic radiodan image."
 
 IMAGE_FSTYPES ?= "tar.bz2 ext4 rpi-sdimg"
-IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs dev-pkgs"
+IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
 
 IMAGE_LINGUAS = " "
 
