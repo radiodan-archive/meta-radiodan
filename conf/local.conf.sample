@@ -1,10 +1,16 @@
+# The following packages might require a license for commercial use -- in order
+# to build them, you need to explicitely whitelist them by uncommenting the
+# the following line.
+#LICENSE_FLAGS_WHITELIST = "commercial_libav commercial_mpg123 commercial_x264"
+
 # To avoid hitting repositories for every package using AUTOREV, you can
 # uncomment the following -- this speeds up the builds, but no changes from the
 # upstream repos will be pulled in.  Mostly useful if you are rebuilding a
 # package from a local copy of a repo
 #BB_SRCREV_POLICY = "cache"
 
-# To enable debug builds
+# To enable debug builds -- among other things, this reduces optimatization to
+#                           -O1
 #DEBUG_BUILD = "1"
 #INHIBIT_PACKAGE_STRIP = "1"
 
@@ -14,7 +20,10 @@
 BB_NUMBER_THREADS = "${@oe.utils.cpu_count() - 2}"
 PARALLEL_MAKE = "-j ${@oe.utils.cpu_count() - 2}"
 
-MACHINE  ?= "raspberrypi"
+# The default machine to build for; currently supported options are raspberrypi
+# (Model 1) and raspberrypi2 (Model 2)
+MACHINE  ?= "raspberrypi2"
+
 DISTRO ?= "radiodan"
 PACKAGE_CLASSES ?= "package_ipk"
 SDKMACHINE ?= "i686"
@@ -23,6 +32,8 @@ SDKMACHINE ?= "i686"
 # devshell and such to the plain old xterm
 #OE_TERMINAL = "xterm"
 
+# Additional features to enable in the images:
+#
 #  "dbg-pkgs"       - add -dbg packages for all installed packages
 #                     (adds symbol information for debugging/profiling)
 #  "dev-pkgs"       - add -dev packages for all installed packages
