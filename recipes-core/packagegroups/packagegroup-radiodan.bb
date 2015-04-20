@@ -57,6 +57,7 @@ RDEPENDS_${PN}-support = "\
     dnsmasq		  \
     wifi-setup            \
     mpc                   \
+    mpd			  \
     "
 
 SUMMARY_${PN}-tools  = "Radiodan extra tools"
