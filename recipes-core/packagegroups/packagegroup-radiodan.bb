@@ -83,6 +83,7 @@ RDEPENDS_${PN}-devtools = "          \
     file                             \
     tcl                              \
     git                              \
+    golang                           \
     "
 
 SUMMARY_${PN}-radiodan-apps  = "Radiodan Applications"
