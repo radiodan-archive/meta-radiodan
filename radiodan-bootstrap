@@ -13,6 +13,9 @@ echo "TEMPLATECONF=\"$TD/meta-radiodan/conf\"" > $TD/.templateconf
 git add $TD/.templateconf
 git commit -m "radiodan templateconf"
 
+. oe-init-build-env
+cd ..
+
 echo ""
 echo "Radiodan environment has been bootstrapped -- you might want to tweak"
 echo "build/conf/local.conf to suite your requirements."
