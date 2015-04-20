@@ -15,7 +15,7 @@ inherit update-rc.d
 
 PACKAGES += "${PN}-init"
 
-RDEPENDS_${PN} += "${PN}-init"
+RDEPENDS_${PN} += "start-stop-daemon ${PN}-init"
 
 do_install_append() {
     install -d ${D}${sysconfdir}/init.d
