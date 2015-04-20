@@ -1,0 +1,109 @@
+
+Radiodan Layer for Yocto
+========================
+
+NB: work in early stages of progress; if you want to experiment with Radiodan
+    itself, use the Raspbian-based set up per instructions on radiodan.net for
+    now.
+
+
+System Requirements
+-------------------
+
+To build radiodan images using the Yocto framework, you will need a computer
+running Linux with some common development tools installed; for details see
+the relevant section in the Yocto Reference Manual:
+
+  http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#intro-requirements
+
+You will also need somewhere in the region of ~100GB of free disk space for the
+build products.
+
+
+Checkout Sources
+----------------
+
+First checkout the Yocto Poky reference distribution sources:
+
+  $ mkdir my-radiodan-directory
+  $ cd my-radiodan-directory
+  $ git clone git://git.yoctoproject.org/poky
+  $ cd poky
+  $ git checkout -b dizzy origin/dizzy
+
+
+Next, checkout the additional meta data layers into the root of the Poky
+checkout:
+
+  $ # inside the poky directory created earlier
+  $ git clone git://git.openembedded.org/meta-openembedded
+  $ cd meta-openembedded
+  $ git checkout -b dizzy origin/dizzy
+  $ cd ..
+
+Finally, checkout the radiodan meta data layer:
+
+  $ # inside the poky directory created earlier
+  $ git clone git@github.com:radiodan/meta-radiodan.git
+  $ cd meta-radiodan
+  $ git checkout -b dizzy origin/dizzy
+  $ cd ..
+
+
+Bootstrap Configuration
+-----------------------
+
+To boostrap local configuration files, run the following command inside the poky
+directory:
+
+  $ meta-radiodan/radiodan-bootstrap
+
+This will generate a build/conf/local.conf and build/conf/bblayers.conf
+configuration files for you from the radiodan-specific templates.
+
+NB: You only need to do this once -- if you run this command again, it will
+    regenerate these files from the templates and you will loose any
+    customisation (though the old files are backed up).
+
+
+Tweak configuration
+-------------------
+
+You might want to change some of the local configuration settings, based on your
+hardware and development needs (particularly the parallelisation settings);
+these are in build/conf/local.conf, which is well commented.
+
+The radiodan images use libav implementing various multimedia codecs, which
+might require a license for commercial use (see http://libav.org/legal.html).
+In order to build these packages, you will need to explicitly white-list them
+in local.conf (see LICENSE_FLAGS_WHITELIST).
+
+
+Run the build
+-------------
+
+  $ # inside the poky directory
+  $ source oe-init-build-env
+  $ bitbake -k <name of the image you want to build>
+
+This will build an image for the default machine (Raspberry Pi Model 2); you can
+explicitly override the machine from the environment, e.g.,
+
+  $ MACHINE=raspberrypi bitbake -k radiodan-image
+
+will build an image for Raspberry Pi Model 1 -- currently available machines are
+'raspberrypi2' (model 2) and 'raspberrypi' (model 1).
+
+The following images recipes are available:
+
+  * radiodan-image: basic radiodan image; it has all the software that makes
+    up the radio,
+
+  * radiodan-image-dev: radiodan-image + tools for building applications on the
+    device,
+
+  * radiodan-image-sdk: radiodan-image-dev + additional tools (e.g., debugger)
+
+The build will take a while, how long depends on the computer running the
+build; the very first build will take in the order of hours.
+
