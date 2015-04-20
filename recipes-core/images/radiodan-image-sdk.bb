@@ -1,3 +1,6 @@
+# No compressed sdk images for now
+SDIMG_COMPRESSION ?= ""
+
 require radiodan-image.bb
 
 DESCRIPTION = "Radiodan image that includes all development packages and tools needed for standalone SDK."

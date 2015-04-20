@@ -10,8 +10,13 @@ LICENSE = "MIT"
 
 # The RPi boot partion name
 BOOTDD_VOLUME_ID = "boot"
+
 # The RPi rootfs type
 SDIMG_ROOTFS_TYPE = "ext4"
+
+# Generate .xz compressed images for easy upload -- only weakly set this, so
+# we can override in other image recipes that require this one.
+SDIMG_COMPRESSION ?= "xz"
 
 CORE_IMAGE_EXTRA_INSTALL = "packagegroup-radiodan"
 
