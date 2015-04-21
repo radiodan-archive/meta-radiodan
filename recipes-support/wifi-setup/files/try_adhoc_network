@@ -65,16 +65,21 @@ else
   echo "Wifi adapter connected"
 fi
 
-associating=$(/usr/sbin/wpa_cli status | /bin/grep -e "ASSOCIATING\|SCANNING")
-waiting=
-while [ "x$associating" != "x" ] && [ "$waiting" != ".........." ]; do
-  echo "Associating ($associating) -- waiting"
-  waiting="${waiting}."
-  sleep 5
+if grep -e "network\.*=" /etc/wpa_supplicant.conf ; then
   associating=$(/usr/sbin/wpa_cli status | /bin/grep -e "ASSOCIATING\|SCANNING")
-done
+  waiting=
+  while [ "x$associating" != "x" ] && [ "$waiting" != ".........." ]; do
+    echo "Associating ($associating) -- waiting"
+    waiting="${waiting}."
+    sleep 5
+    associating=$(/usr/sbin/wpa_cli status | /bin/grep -e "ASSOCIATING\|SCANNING")
+  done
 
-connected=$(/usr/sbin/wpa_cli status | /bin/grep COMPLETED)
+  connected=$(/usr/sbin/wpa_cli status | /bin/grep COMPLETED)
+else
+  connected=
+fi
+
 if [ "x$connected" != "x" ]; then
     showRadiodanClient
 else
