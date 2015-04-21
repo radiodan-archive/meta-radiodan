@@ -25,15 +25,22 @@ RDEPENDS_${PN} = "      \
 # sudo is needed because of the wpa-cli gem
 
 SUMMARY_${PN}-base  = "Radiodan base packages"
-RDEPENDS_${PN}-base = "\
-    wpa-supplicant     \
-    udev-extraconf     \
-    avahi-services     \
-    hostapd            \
-    linux-firmware     \
-    kbd-keymaps        \
-    resize-root	       \
-    sudo               \
+RDEPENDS_${PN}-base = "          \
+    pulseaudio                   \
+    pulseaudio-server            \
+    libasound-module-conf-pulse  \
+    libasound-module-ctl-pulse   \
+    libasound-module-pcm-pulse   \
+    pulseaudio-misc              \
+    alsa-utils                   \
+    wpa-supplicant               \
+    udev-extraconf               \
+    avahi-services               \
+    hostapd                      \
+    linux-firmware               \
+    kbd-keymaps                  \
+    resize-root	                 \
+    sudo                         \
     "
 
 SUMMARY_${PN}-ruby  = "Radiodan ruby-related packages"
