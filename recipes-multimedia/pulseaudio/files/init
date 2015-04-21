@@ -1,0 +1,50 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          pulseaudio-server
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Pulseaudio Server
+# Description:       Pulseaudio
+### END INIT INFO
+
+set -e
+
+NAME=pulseaudio-server
+DAEMON=/usr/bin/pulseaudio
+DAEMON_OPTS="--system --disallow-exit -D --exit-idle-time=-1 --log-target=file:/var/log/$NAME.log"
+PIDFILE=/var/run/pulse/pid
+
+do_start() {
+    $DAEMON $DAEMON_OPTS
+}
+
+do_stop() {
+    kill $(cat $PIDFILE)
+}
+
+case "$1" in
+  start)
+    echo -n "Starting daemon: "$NAME
+    do_start
+    echo "."
+    ;;
+  stop)
+    echo -n "Stopping daemon: "$NAME
+    do_stop
+    echo "."
+    ;;
+  restart)
+    echo -n "Restarting daemon: "$NAME
+    do_stop
+    do_start
+    echo "."
+    ;;
+
+  *)
+    echo "Usage: "$1" {start|stop|restart}"
+    exit 1
+esac
+
+exit 0
