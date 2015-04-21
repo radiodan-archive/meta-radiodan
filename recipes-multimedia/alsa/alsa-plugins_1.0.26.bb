@@ -14,6 +14,11 @@ SRC_URI[sha256sum] = "03515134d2009db4dfb2769e0ab0e1fb517c8140ffdfd64a984be968e8
 
 inherit autotools pkgconfig
 
+do_install_append() {
+    # Make pulse the default source
+    mv ${D}${datadir}/alsa/alsa.conf.d/99-pulseaudio-default.conf.example ${D}${datadir}/alsa/alsa.conf.d/99-pulseaudio-default.conf
+}
+
 PACKAGES_DYNAMIC = "libasound-module*"
 
 python populate_packages_prepend() {
