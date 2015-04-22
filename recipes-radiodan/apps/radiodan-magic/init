@@ -13,7 +13,7 @@ set -e
 
 export NODE_PATH=$NODE_PATH:/usr/lib/node_modules
 export LOG_LEVEL=debug
-export SETTINGS_PATH=/opt/radiodan/apps/radiodan-magic/config
+export SETTINGS_PATH=/opt/radiodan/apps/radiodan-magic/current/config
 export BBC_SERVICES_URL=http://bbc.services.radiodan.net
 
 # Must be a valid filename
