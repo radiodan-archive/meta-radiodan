@@ -27,7 +27,7 @@ RDEPENDS_${PN} = "      \
 SUMMARY_${PN}-base  = "Radiodan base packages"
 RDEPENDS_${PN}-base = "          \
     pulseaudio                   \
-    pulseaudio-server            \
+    pulseaudio-system-server     \
     libasound-module-conf-pulse  \
     libasound-module-ctl-pulse   \
     libasound-module-pcm-pulse   \
