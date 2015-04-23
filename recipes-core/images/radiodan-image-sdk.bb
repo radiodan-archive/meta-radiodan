@@ -5,7 +5,7 @@ require radiodan-image.bb
 
 DESCRIPTION = "Radiodan image that includes all development packages and tools needed for standalone SDK."
 
-IMAGE_FEATURES += "dev-pkgs tools-sdk\
+IMAGE_FEATURES += "dev-pkgs dbg-pkgs tools-sdk\
 	           tools-debug eclipse-debug tools-profile tools-testapps \
                    debug-tweaks ssh-server-openssh"
 
