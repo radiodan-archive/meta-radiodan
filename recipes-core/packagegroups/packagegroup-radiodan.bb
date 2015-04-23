@@ -65,6 +65,8 @@ RDEPENDS_${PN}-support = "\
     wifi-setup            \
     mpc                   \
     mpd			  \
+    mopidy                \
+    mopidy-spotify        \
     "
 
 SUMMARY_${PN}-tools  = "Radiodan extra tools"
