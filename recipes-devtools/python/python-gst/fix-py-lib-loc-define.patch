@@ -1,0 +1,13 @@
+Index: gst-python-0.10.22/plugin/Makefile.am
+===================================================================
+--- gst-python-0.10.22.orig/plugin/Makefile.am	2010-11-19 18:44:51.000000000 +0000
++++ gst-python-0.10.22/plugin/Makefile.am	2015-04-23 11:51:11.002846877 +0100
+@@ -2,7 +2,7 @@
+ 
+ INCLUDES = $(PYGOBJECT_CFLAGS) $(GST_CFLAGS)\
+ 	-DPYTHON_VERSION=\"$(PYTHON_VERSION)\"		\
+-	-DPY_LIB_LOC="\"$(PYTHON_LIB_LOC)\""		\
++	-DPY_LIB_LOC="\"/usr/lib\""		\
+ 	-DPY_LIB_SUFFIX=$(PYTHON_LIB_SUFFIX) \
+ 	$(PYTHON_INCLUDES)
+ 
