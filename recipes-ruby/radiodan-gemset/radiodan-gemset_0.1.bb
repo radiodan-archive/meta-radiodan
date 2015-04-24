@@ -1,7 +1,7 @@
 SUMMARY = "radiodan gemset"
 SECTION = "devtools"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=0835ade698e0bcf8506ecda2f7b4f302"
 SECTION = "devtools"
 
 RDEPENDS_${PN} = "eventmachine thin"
@@ -15,9 +15,4 @@ GEMSET_INSTALL_GEMS = "rack              \
                        daemons           \
                       "
 
-inherit gemset
-
-do_configure() {
-    cp ${TOPDIR}/../meta/COPYING.MIT ${S}
-}
-
+inherit gemset stdlicense

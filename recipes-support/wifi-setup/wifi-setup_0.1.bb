@@ -1,6 +1,6 @@
 SUMMARY = "Set up wifi connection"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=0835ade698e0bcf8506ecda2f7b4f302"
 SECTION = "network"
 
 RDEPENDS_${PN} = "wpa-supplicant    \
@@ -17,11 +17,7 @@ SRC_URI = "file://try_adhoc_network      \
            file://radiodan-volatile.conf \
           "
 
-inherit update-rc.d
-
-do_configure() {
-    cp ${TOPDIR}/../meta/COPYING.MIT ${S}
-}
+inherit update-rc.d stdlicense
 
 do_install() {
     install -d ${D}${sysconfdir}/init.d
