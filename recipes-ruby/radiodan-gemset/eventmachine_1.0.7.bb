@@ -7,9 +7,10 @@ require bingem.inc
 
 DEPENDS += "openssl"
 
-do_configure() {
+do_copy_license() {
     cd ${S}
     L=$(find usr -name GNU)
     echo "found license at $L"
     ln -sf $L GNU
 }
+addtask copy_license after do_unpack before do_patch
