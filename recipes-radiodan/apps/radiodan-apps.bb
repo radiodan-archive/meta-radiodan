@@ -30,6 +30,10 @@ do_install() {
    set -e
    pfx="${D}${libdir}/node_modules"
    install -d ${pfx}
+
+   # npm creates a cache in $HOME/.npm, so point $HOME at the WORKDIR
+   export HOME="${WORKDIR}"
+
    for app in ${NODEJS_APPS}; do
      echo "Doing npm install in ${STAGING_DATADIR}/radiodan/packages/${app}"
      cd ${STAGING_DATADIR}/radiodan/packages/${app}
