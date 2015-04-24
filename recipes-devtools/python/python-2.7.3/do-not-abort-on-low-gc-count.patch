@@ -1,0 +1,29 @@
+# There is mismatch between python-pyobject and python-gst (most likely due to
+# the very old version of python-pyobject and changes in how floating
+# references behave which triggers this assert. The assert is somewhat over the 
+# top as the code below it safe for the 0 condition, and AFAICT without any real
+# impact, so replace it with a warning message instead but allow the program to
+# continue.
+#
+# Signed-off-by: Tomas Frydrych <tomas@tomtain.com>
+#
+Index: Python-2.7.3/Modules/gcmodule.c
+===================================================================
+--- Python-2.7.3.orig/Modules/gcmodule.c	2012-04-10 00:07:34.000000000 +0100
++++ Python-2.7.3/Modules/gcmodule.c	2015-04-24 09:56:28.408138800 +0100
+@@ -323,7 +323,15 @@
+          * generation being collected, which can be recognized
+          * because only they have positive gc_refs.
+          */
++#if 0
+         assert(gc->gc.gc_refs != 0); /* else refcount was too small */
++#else
++        if (gc->gc.gc_refs == 0)
++          {
++            PySys_WriteStderr("gc: object of type %s has gc_refs == 0\n",
++                              op->ob_type->tp_name);
++          }
++#endif
+         if (gc->gc.gc_refs > 0)
+             gc->gc.gc_refs--;
+     }
