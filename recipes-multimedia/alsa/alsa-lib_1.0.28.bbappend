@@ -3,8 +3,8 @@ FILESEXTRAPATHS_prepend_raspberrypi2 := "${THISDIR}/raspberrypi:"
 
 RPI_SRC = "file://alsa-base.conf"
 
-SRC_URI_raspberrypi += "${RPI_SRC}"
-SRC_URI_raspberrypi2 += "${RPI_SRC}"
+SRC_URI_append_raspberrypi = " ${RPI_SRC}"
+SRC_URI_append_raspberrypi2 = " ${RPI_SRC}"
 
 rpi_install() {
     install -d ${D}${sysconfdir}/modprobe.d
