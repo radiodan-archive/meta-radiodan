@@ -30,8 +30,8 @@ RDEPENDS_${PN} += "python-distribute         \
                    python-misc               \
                    start-stop-daemon         \
                    ${PN}-init                \
-                   gst-plugins-good-pulse    \
-                   gst-plugins-good-icydemux \
+                   gst-plugins-base-meta     \
+                   gst-plugins-good-meta     \
                   "
 
 do_install_append() {
