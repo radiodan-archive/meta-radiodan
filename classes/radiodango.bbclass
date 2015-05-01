@@ -34,6 +34,7 @@ radiodango_do_compile() {
 
 	cd ${LOCAL_PATH}/${BPN}
 
+	export CGO_ENABLED="1"
 	export GOPATH="${S}/.gopath:${STAGING_DIR_TARGET}/${prefix}/local/go"
 	export CGO_CFLAGS="${BUILD_CFLAGS}"
 	export CGO_LDFLAGS="${BUILD_LDFLAGS}"
