@@ -107,3 +107,32 @@ The following images recipes are available:
 The build will take a while, how long depends on the computer running the
 build; the very first build will take in the order of hours.
 
+
+Installing the images
+---------------------
+
+The build generates system images in a few different formats; these are located
+in build/tmp/deploy/images/<MACHINE>/.
+
+To make an SD  card to use with your RPi, you need to writed the rpi-sdimg
+directly onto the SD card device, e.g., if you build an image for RPi model 2,
+and your SD card reader matches /dev/sdd (you can use dmesg to check):
+
+  $ # if the SD card is mounted, you need to unmout (but not eject) it first,
+  $ # e.g., if the SD card has two partitions, something like:
+  $ umount /dev/sdd1; umount /dev/sdd2
+  $
+  $ # now write the image onto the device (NB: the device, not a partition):
+  $ dd if=build/tmp/deploy/images/raspberrypi2/radiodan-image-dev-raspberrypi2.rpi-sdimg of=/dev/sdd
+
+
+Booting for the first time
+--------------------------
+
+When you first boot a newly made SD card, the system will go through a reboot
+sequence in order to resize the file system on the SD card to the SD card size,
+simply wait for the login prompt to appear at the end of this process.
+
+Once the login prompt appears, you can login as root, the development images are
+set up not to require a password, but you might want to change this using the
+'passwd' command.
