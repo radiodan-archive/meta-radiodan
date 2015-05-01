@@ -1,7 +1,7 @@
 SUMMARY = "Radiodan server"
 
-SRCREV    = "6435c4e1c21a06047468df3a66269cdb9de638f0"
-SRCBRANCH = "stable"
+SRCREV    = "70f2323b34f1611179a80a581cfa22f33cbb582d"
+SRCBRANCH = "master"
 SRCREPO   = "radiodan.js"
 
 require radiodan-app.inc
