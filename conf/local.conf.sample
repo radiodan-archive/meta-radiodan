@@ -9,6 +9,9 @@
 # package from a local copy of a repo
 #BB_SRCREV_POLICY = "cache"
 
+# Enable PR service if packages are to be distributed externally via feeds
+#PRSERV_HOST = "localhost:0"
+
 # To enable debug builds -- among other things, this reduces optimatization to
 #                           -O1
 #DEBUG_BUILD = "1"
