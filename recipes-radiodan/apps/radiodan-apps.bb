@@ -46,5 +46,9 @@ do_install() {
 FILES_${PN} = "${libdir}/node_modules"
 FILES_${PN}-dbg += "${libdir}/node_modules/*/*/*/.debug \
                     ${libdir}/node_modules/*/*/*/*/.debug \
+                    ${libdir}/node_modules/*/*/*/*/*/.debug \
+                    ${libdir}/node_modules/*/*/*/*/*/*/.debug \
+                    ${libdir}/node_modules/*/*/*/*/*/*/*/.debug \
+                    ${libdir}/node_modules/*/*/*/*/*/*/*/*/.debug \
                    "
 FILES_${PN}-staticdev += "${libdir}/node_modules/*/*/*.a"
