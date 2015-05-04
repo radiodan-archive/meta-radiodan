@@ -1,6 +1,6 @@
 SUMMARY = "Avahi services"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=0835ade698e0bcf8506ecda2f7b4f302"
 SECTION = "network"
 
 DEPENDS = "avahi"
@@ -8,6 +8,8 @@ DEPENDS = "avahi"
 SRC_URI = "file://http.service \
            file://smb.service  \
           "
+
+inherit stdlicense
 
 PACKAGES += "${PN}-http ${PN}-smb"
 
@@ -18,10 +20,6 @@ RDEPENDS_${PN} = "             \
                   ${PN}-http   \
                   ${PN}-smb    \
                  "
-
-do_configure() {
-    cp ${TOPDIR}/../meta/COPYING.MIT ${S}
-}
 
 do_install() {
     install -d ${D}${sysconfdir}/avahi/services
