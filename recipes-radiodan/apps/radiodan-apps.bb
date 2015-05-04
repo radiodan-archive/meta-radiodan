@@ -1,6 +1,6 @@
 SUMMARY = "Radiodan applications meta package"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=0835ade698e0bcf8506ecda2f7b4f302"
 SECTION = "radiodan"
 
 ALLOW_EMPTY_${PN} = "1"
@@ -11,6 +11,8 @@ GO_APPS = "radiodan-debug radiodan-cease radiodan-updater"
 DEPENDS = "nodejs-native ${NODEJS_APPS}"
 RDEPENDS_${PN} = "${NODEJS_APPS} ${GO_APPS}"
 
+inherit stdlicense
+
 # Borrowed from the nodejs recipes
 def map_nodejs_arch(a, d):
     import re
@@ -20,10 +22,6 @@ def map_nodejs_arch(a, d):
     elif re.match('x86_64$', a): return 'x64'
     elif re.match('arm64$', a): return 'arm'
     return a
-
-do_configure() {
-    cp ${TOPDIR}/../meta/COPYING.MIT ${S}
-}
 
 # Install all npm modules these apps require
 do_install() {
