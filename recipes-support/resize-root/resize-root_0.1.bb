@@ -1,16 +1,12 @@
 SUMMARY = "Resize root partition to the available size"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=0835ade698e0bcf8506ecda2f7b4f302"
 SECTION = "network"
 
 SRC_URI = "file://resize-root      \
           "
 
-inherit update-rc.d
-
-do_configure() {
-    cp ${TOPDIR}/../meta/COPYING.MIT ${S}
-}
+inherit update-rc.d stdlicense
 
 do_install() {
     install -d ${D}${sysconfdir}/init.d
