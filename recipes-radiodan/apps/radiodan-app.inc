@@ -9,6 +9,7 @@ SRC_URI   = "git://github.com/radiodan/${SRCREPO};branch=${SRCBRANCH} \
              file://init                                              \
             "
 
+PV = "git${SRCPV}"
 S = "${WORKDIR}/git"
 
 inherit update-rc.d
