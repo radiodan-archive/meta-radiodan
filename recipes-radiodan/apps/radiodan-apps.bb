@@ -39,6 +39,17 @@ do_install() {
 
      cp -R node_modules/* ${pfx}
    done
+
+   # Remove broken wiringpi binaries built and installed by wiring-pi
+   # -- the wiringpi makefiles are broken and will not cross compile, so the
+   # binary artefacts are built for the host; we don't really care about these,
+   # since  we package wiringpi separately, so we can fix the makefiles.
+   if [ -d $pfx/wiring-pi/wiringpi ]; then
+      echo "blowing away broken wiringpi binaries"
+      rm -rf $pfx/wiring-pi/wiringpi
+   fi
+
+
 }
 
 FILES_${PN} = "${libdir}/node_modules"
