@@ -1,6 +1,6 @@
 SUMMARY = "Radiodan server"
 
-SRCREV    = "8915c2a9f040f7b82a83ba181e5f60c07bcdc911"
+SRCREV    = "6435c4e1c21a06047468df3a66269cdb9de638f0"
 SRCBRANCH = "stable"
 SRCREPO   = "radiodan.js"
 
