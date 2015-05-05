@@ -12,6 +12,8 @@ LIC_FILES_CHKSUM = "file://README.markdown;md5=bca49df90d35123676138e82a824e2c8"
 RDEPENDS_${PN}_append_raspberrypi  = " wiringpi"
 RDEPENDS_${PN}_append_raspberrypi2 = " wiringpi"
 
-inherit radiodannode allarch
+inherit radiodannode
+
+DEPENDS += "zeromq"
 
 INITSCRIPT_PACKAGES = ""

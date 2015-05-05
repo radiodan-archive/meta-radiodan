@@ -6,7 +6,9 @@ SRCREPO   = "magic-button"
 
 require radiodan-app.inc
 
-inherit radiodannode allarch
+inherit radiodannode
+
+DEPENDS += "zeromq"
 
 do_install_append() {
     cd ${D}/opt/radiodan/apps/radiodan-magic/releases/0/config

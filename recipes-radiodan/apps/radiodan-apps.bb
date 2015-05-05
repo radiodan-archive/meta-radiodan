@@ -8,56 +8,8 @@ ALLOW_EMPTY_${PN} = "1"
 NODEJS_APPS = "radiodan-server radiodan-magic radiodan-buttons radiodan-example"
 GO_APPS = "radiodan-debug radiodan-cease radiodan-updater"
 
-DEPENDS = "nodejs-native ${NODEJS_APPS}"
 RDEPENDS_${PN} = "${NODEJS_APPS} ${GO_APPS}"
 
 inherit stdlicense
 
-# Borrowed from the nodejs recipes
-def map_nodejs_arch(a, d):
-    import re
-
-    if   re.match('p(pc|owerpc)(|64)', a): return 'ppc'
-    elif re.match('i.86$', a): return 'ia32'
-    elif re.match('x86_64$', a): return 'x64'
-    elif re.match('arm64$', a): return 'arm'
-    return a
-
-# Install all npm modules these apps require
-do_install() {
-   set -e
-   pfx="${D}${libdir}/node_modules"
-   install -d ${pfx}
-
-   # npm creates a cache in $HOME/.npm, so point $HOME at the WORKDIR
-   export HOME="${WORKDIR}"
-
-   for app in ${NODEJS_APPS}; do
-     echo "Doing npm install in ${STAGING_DATADIR}/radiodan/packages/${app}"
-     cd ${STAGING_DATADIR}/radiodan/packages/${app}
-     npm install --arch=${@map_nodejs_arch(d.getVar('TARGET_ARCH', True), d)}
-
-     cp -R node_modules/* ${pfx}
-   done
-
-   # Remove broken wiringpi binaries built and installed by wiring-pi
-   # -- the wiringpi makefiles are broken and will not cross compile, so the
-   # binary artefacts are built for the host; we don't really care about these,
-   # since  we package wiringpi separately, so we can fix the makefiles.
-   if [ -d $pfx/wiring-pi/wiringpi ]; then
-      echo "blowing away broken wiringpi binaries"
-      rm -rf $pfx/wiring-pi/wiringpi
-   fi
-
-
-}
-
-FILES_${PN} = "${libdir}/node_modules"
-FILES_${PN}-dbg += "${libdir}/node_modules/*/*/*/.debug \
-                    ${libdir}/node_modules/*/*/*/*/.debug \
-                    ${libdir}/node_modules/*/*/*/*/*/.debug \
-                    ${libdir}/node_modules/*/*/*/*/*/*/.debug \
-                    ${libdir}/node_modules/*/*/*/*/*/*/*/.debug \
-                    ${libdir}/node_modules/*/*/*/*/*/*/*/*/.debug \
-                   "
-FILES_${PN}-staticdev += "${libdir}/node_modules/*/*/*.a"
+ALLOW_EMPTY_${PN} = "1"

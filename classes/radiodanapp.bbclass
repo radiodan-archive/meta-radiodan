@@ -1,3 +1,6 @@
+APPBASEDIR="/opt/radiodan/apps/${PN}"
+APPDIR="${APPBASEDIR}/releases/0"
+
 def rda_metadata(d):
     src_uri = "http://deploy.radiodan.net/"
     try:
@@ -26,9 +29,8 @@ radiodanapp_do_configure() {
 }
 
 radiodanapp_do_install() {
-    DIR="/opt/radiodan/apps/${PN}/releases/0"
-    install -d ${D}${DIR}
-    echo -e "{\"name\":\"radiodan/${PN}\",\"ref\":\"${SRCBRANCH}\",\"commit\":\"\"}" > ${D}${DIR}/.deploy
+    install -d ${D}${APPDIR}
+    echo -e "{\"name\":\"radiodan/${PN}\",\"ref\":\"${SRCBRANCH}\",\"commit\":\"\"}" > ${D}${APPDIR}/.deploy
 
     cd ${D}/opt/radiodan/apps/${PN}
     ln -sf releases/0 current

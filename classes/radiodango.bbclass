@@ -48,7 +48,7 @@ do_install_append() {
         PNPATH=${MYPN/-/\//}
 	LOCAL_PATH=".gopath/src/github.com/${PNPATH}"
 
-	cp ${S}/.gopath/bin/linux_*/* ${D}${DIR}
+	cp ${S}/.gopath/bin/linux_*/* ${D}${APPDIR}
 
 	cd releases/0
         ln -sf ${BPN} ${SHORT_NAME}

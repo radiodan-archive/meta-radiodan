@@ -10,10 +10,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d2794c0df5b907fdace235a619d80314"
 
 DEPENDS += "avahi"
 
-inherit radiodannode allarch
+inherit radiodannode
 
-#do_install_append(){
-#   sed -e 's/TheThingSystem/tthef/g' -i ${D}${datadir}/radiodan/packages/${PN}/package.json
-#}
+DEPENDS += "zeromq"
 
 INITSCRIPT_PACKAGES = ""
