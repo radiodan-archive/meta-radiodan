@@ -32,13 +32,25 @@ First checkout the Yocto Poky reference distribution sources:
   $ git checkout -b dizzy origin/dizzy
 
 
-Next, checkout the additional meta data layers into the root of the Poky
-checkout:
+Next, checkout the additional meta data layers from OpenEmbedded into the root
+of the Poky checkout:
 
   $ # inside the poky directory created earlier
   $ git clone git://git.openembedded.org/meta-openembedded
   $ cd meta-openembedded
   $ git checkout -b dizzy origin/dizzy
+  $ cd ..
+
+Next, checkout the BSP layer for Raspberry Pi, again into the root of the Poky
+checkout:
+
+  $ # inside the poky directory created earlier
+  $ git clone git://git.yoctoproject.org/meta-raspberrypi
+  $ cd meta-raspberrypi
+  $ git checkout master
+  $ # The dizzy branch does not have the Model 2 bits we need, so we use a known
+  $ # good revision from master
+  $ git reset --hard b896a7da70dd7a16ba7ffd664f7747cb37e1d142
   $ cd ..
 
 Finally, checkout the radiodan meta data layer:
