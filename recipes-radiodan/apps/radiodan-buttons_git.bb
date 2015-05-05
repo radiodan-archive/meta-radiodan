@@ -49,7 +49,7 @@ do_install () {
 
     cd ${S}
     echo "Running first npm install"
-    npm install --arch=${@map_nodejs_arch(d.getVar('TARGET_ARCH', True), d)}
+    npm install --arch=${@map_nodejs_arch(d.getVar('TARGET_ARCH', True), d)} || true
 
 
     echo "Patching wiringpi Makefiles"
