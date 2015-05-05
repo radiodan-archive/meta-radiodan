@@ -1,7 +1,7 @@
 SUMMARY = "Magic button"
 
-SRCREV    = "afef131d9797352192288b7891bbdf993becedc8"
-SRCBRANCH = "stable"
+SRCREV    = "ff34a89ab678459d9288074d81ea0e98a4b7ffb8"
+SRCBRANCH = "master"
 SRCREPO   = "magic-button"
 
 require radiodan-app.inc
