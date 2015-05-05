@@ -1,7 +1,7 @@
 SUMMARY = "Physical Interface Server for radiodan"
 
-SRCREV    = "26cc87638e6d731079195f81fac9008144137fa6"
-SRCBRANCH = "stable"
+SRCREV    = "706f01f645a1d1741d90f1469a49ace51dc53702"
+SRCBRANCH = "master"
 SRCREPO   = "physical-ui"
 
 require radiodan-app.inc
