@@ -41,6 +41,7 @@ RDEPENDS_${PN}-base = "          \
     kbd-keymaps                  \
     resize-root	                 \
     sudo                         \
+    supervisor-init              \
     "
 
 SUMMARY_${PN}-ruby  = "Radiodan ruby-related packages"
@@ -53,7 +54,6 @@ RDEPENDS_${PN}-ruby = "\
 SUMMARY_${PN}-web  = "Radiodan web-related packages"
 RDEPENDS_${PN}-web = "\
     nginx	      \
-    monit	      \
     nodejs	      \
     "
 

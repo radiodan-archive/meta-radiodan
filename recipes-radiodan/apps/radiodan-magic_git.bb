@@ -6,7 +6,7 @@ SRCREPO   = "magic-button"
 
 require radiodan-app.inc
 
-inherit radiodannode
+inherit radiodannode radiodansupervisor
 
 DEPENDS += "zeromq"
 
@@ -19,4 +19,4 @@ do_install_append() {
     mv physical-ui-config.json.example physical-ui-config.json
 }
 
-INITSCRIPT_PACKAGES = ""
+SUPERVISOR_TYPED = "1"

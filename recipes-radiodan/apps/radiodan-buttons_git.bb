@@ -16,8 +16,6 @@ inherit radiodannode
 
 DEPENDS += "zeromq"
 
-INITSCRIPT_PACKAGES = ""
-
 # wiring-pi does not crosscompile, the basic problem is that it does a git
 # checkout of wiringpi, which it then attempts to build, but wiringpi cannot
 # be crosscompiled without patching the Makefiles because it hard codes "CC=gcc"

@@ -5,10 +5,27 @@ SECTION = "radiodan"
 
 ALLOW_EMPTY_${PN} = "1"
 
-NODEJS_APPS = "radiodan-server radiodan-magic radiodan-buttons radiodan-example"
-GO_APPS = "radiodan-debug radiodan-cease radiodan-updater"
+NODEJS_APPS = "      \
+    radiodan-server  \
+    radiodan-magic   \
+    radiodan-buttons \
+    radiodan-example \
+    "
 
-RDEPENDS_${PN} = "${NODEJS_APPS} ${GO_APPS}"
+GO_APPS = "          \
+    radiodan-debug   \
+    radiodan-cease   \
+    radiodan-updater \
+    "
+
+SUPERVISOR_PACKAGES = "         \
+    radiodan-magic-supervisor   \
+    radiodan-example-supervisor \
+    radiodan-cease-supervisor   \
+    radiodan-debug-supervisor   \
+    "
+
+RDEPENDS_${PN} = "${NODEJS_APPS} ${GO_APPS} ${SUPERVISOR_PACKAGES}"
 
 inherit stdlicense
 

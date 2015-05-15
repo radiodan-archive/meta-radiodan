@@ -13,7 +13,7 @@ def map_nodejs_arch(a, d):
     elif re.match('arm64$', a): return 'arm'
     return a
 
-do_install_append() {
+do_compile () {
     set -e
 
     # npm creates a cache in $HOME/.npm, so point $HOME at the WORKDIR
@@ -21,7 +21,9 @@ do_install_append() {
 
     cd ${S}
     npm install --arch=${@map_nodejs_arch(d.getVar('TARGET_ARCH', True), d)}
+}
 
+do_install_append() {
     cp -R ${S}/* ${D}${APPDIR}
 }
 

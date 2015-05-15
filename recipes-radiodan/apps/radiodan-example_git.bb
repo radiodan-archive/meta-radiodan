@@ -10,8 +10,9 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d2794c0df5b907fdace235a619d80314"
 
 DEPENDS += "avahi"
 
-inherit radiodannode
+inherit radiodannode radiodansupervisor
 
 DEPENDS += "zeromq"
 
-INITSCRIPT_PACKAGES = ""
+SUPERVISOR_DISABLED = "1"
+SUPERVISOR_TYPED = "1"

@@ -8,7 +8,7 @@ require radiodan-app.inc
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=00fb0986f133b1a5ec05e533b4298a3d"
 
-inherit radiodango
+inherit radiodango radiodaninit
 
 do_configure_append() {
     ln -sf ${S}/commands ${LOCAL_PATH}/commands
