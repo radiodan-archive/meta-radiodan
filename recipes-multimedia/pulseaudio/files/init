@@ -13,7 +13,7 @@ set -e
 
 NAME=pulseaudio-server
 DAEMON=/usr/bin/pulseaudio
-DAEMON_OPTS="--system --disallow-exit -D --exit-idle-time=-1 --log-target=file:/var/log/$NAME.log"
+DAEMON_OPTS="--system --disallow-exit -D --exit-idle-time=-1 --log-target=syslog -vvvv"
 PIDFILE=/var/run/pulse/pid
 
 do_start() {
