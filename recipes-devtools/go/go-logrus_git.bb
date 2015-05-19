@@ -1,17 +1,16 @@
-DESCRIPTION = "A golang registry for global request variables."
+DESCRIPTION = "ZMQ4"
 HOMEPAGE = "https://github.com/Sirupsen/logrus"
 SECTION = "devel/go"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=8dadfef729c08ec4e631c4f6fc5d43a0"
 
 PR = "r0"
-SRCNAME = "logrus"
 
-PKG_NAME = "github.com/Sirupsen/${SRCNAME}"
+PKG_NAME = "github.com/Sirupsen/logrus"
 SRC_URI = "git://${PKG_NAME}.git"
 
-SRCREV = "6ebb4e7b3c24b9fef150d7693e728cb1ebadf1f5"
-PV = "0.6.0+git${SRCREV}"
+SRCREV = "cdd90c38c6e3718c731b555b9c3ed1becebec3ba"
+PV = "0.0+git${SRCREV}"
 
 S = "${WORKDIR}/git"
 
