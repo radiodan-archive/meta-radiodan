@@ -16,6 +16,7 @@ GO_APPS = "          \
     radiodan-debug   \
     radiodan-cease   \
     radiodan-updater \
+    radiodan-broker  \
     "
 
 SUPERVISOR_PACKAGES = "         \
@@ -23,6 +24,7 @@ SUPERVISOR_PACKAGES = "         \
     radiodan-example-supervisor \
     radiodan-cease-supervisor   \
     radiodan-debug-supervisor   \
+    radiodan-broker-supervisor  \
     "
 
 RDEPENDS_${PN} = "${NODEJS_APPS} ${GO_APPS} ${SUPERVISOR_PACKAGES}"
