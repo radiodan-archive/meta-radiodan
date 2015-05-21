@@ -1,31 +1,10 @@
-SUMMARY = "Radiodan image."
-DESCRIPTION = "Basic radiodan image."
+require radiodan-image-common.inc
 
-IMAGE_FSTYPES ?= "tar.bz2 ext4 rpi-sdimg"
-IMAGE_FEATURES += "splash package-management ssh-server-dropbear hwcodecs"
-
-IMAGE_LINGUAS = " "
-
-LICENSE = "MIT"
-
-# The RPi boot partion name
-BOOTDD_VOLUME_ID = "boot"
-
-# The RPi rootfs type
-SDIMG_ROOTFS_TYPE = "ext4"
-
-# Generate .xz compressed images for easy upload -- only weakly set this, so
-# we can override in other image recipes that require this one.
-SDIMG_COMPRESSION ?= "xz"
-
-CORE_IMAGE_EXTRA_INSTALL = "packagegroup-radiodan"
-
-inherit core-image
-
-#do_rootfs[depends] += "radiodan-minifs:do_build"
-#
-#fakeroot do_add_minifs() {
-#	cp ${DEPLOY_DIR_IMAGE}/radiodan-minifs-${MACHINE}.ext4 ${WORKDIR}/rootfs/radiodan-minifs.ext4
-#}
-#
-#ROOTFS_POSTPROCESS_COMMAND += "do_add_minifs; "
+# set root password 'radiodan'
+set_root_passwd() {
+   sed 's%^root:[^:]*:%root:$6$onRprIDS$oY.iiebgFdQtT1GvUF3OxQOaKElluAIGPDS/aXL02rt77bPZoDIHXz6XF8L6dfMYF7Sc.9VUoq20tgDhtfd2J0:%' \
+       < ${IMAGE_ROOTFS}/etc/shadow \
+       > ${IMAGE_ROOTFS}/etc/shadow.new;
+   mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;
+}
+ROOTFS_POSTPROCESS_COMMAND += "set_root_passwd;"
