@@ -1,6 +1,13 @@
 LICENSE = "Repoze"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=9e7581cef5645475fcefebdc15ed7abf"
 
+RDEPENDS_${PN} += "python-xmlrpc    \
+                   python-unixadmin \
+                   python-resource  \
+                   python-email     \
+                   python-html      \
+                  "
+
 VER_MAJ = "1"
 VER_MIN = "0"
 VER_MIC = "2"
