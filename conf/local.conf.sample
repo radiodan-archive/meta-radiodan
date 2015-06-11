@@ -3,6 +3,18 @@
 # the following line.
 #LICENSE_FLAGS_WHITELIST = "commercial_libav commercial_mpg123 commercial_x264"
 
+# Source archiving options In order to enambe source archiving, uncomment the
+# line below; possible modes are are original, patched, configures; default is
+# patched. For more details see the Yocto manual
+#INHERIT += "archiver"
+#ARCHIVER_MODE[src] = "patched"
+
+# License archiving on image -- to include licenses on the binary images,
+# uncomment the following two lines
+#COPY_LIC_MANIFEST = "1"
+#COPY_LIC_DIRS = "1"
+
+
 # To avoid hitting repositories for every package using AUTOREV, you can
 # uncomment the following -- this speeds up the builds, but no changes from the
 # upstream repos will be pulled in.  Mostly useful if you are rebuilding a
