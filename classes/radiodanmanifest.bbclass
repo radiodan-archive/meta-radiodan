@@ -21,6 +21,11 @@ def rdm_runfetchcmd(uri, d):
     success = False
     error_message = ""
     oldfile = False
+    dldir = d.expand("${DL_DIR}")
+
+    if not os.path.exists(dldir):
+        bb.utils.mkdirhier(dldir)
+
     file = d.expand("${DL_DIR}/radiodan-manifest")
 
     try:
