@@ -50,11 +50,11 @@ def rdm_runfetchcmd(uri, d):
 
     if not success:
         if oldfile:
-            bb.warning("Failed to download Radiodan manifest: %s." % error_message)
-            bb.warning("Using cached version of Radiodan manifest.")
+            bb.warn("Failed to download Radiodan manifest: %s." % error_message)
+            bb.warn("Using cached version of Radiodan manifest.")
             os.rename(file + ".bak", file)
         else:
-            bb.warning("Failed to download Radiodan manifest: %s." % error_message)
+            bb.warn("Failed to download Radiodan manifest: %s." % error_message)
             bb.fatal("No cached version of Radiodan manifest.")
 
 
