@@ -1,7 +1,7 @@
 SUMMARY = "Radiodan cease"
 
-SRCREV    = "a0d3d252784058d02d2cbf14843479a1341281b0"
-SRCBRANCH = "pubsub"
+SRCREV    = "6f6d23c63665bf8e516afae3c1feb22b03fae41e"
+SRCBRANCH = "master"
 SRCREPO   = "cease"
 
 require radiodan-app.inc
