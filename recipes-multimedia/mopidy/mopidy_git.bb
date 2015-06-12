@@ -14,7 +14,7 @@ S = "${WORKDIR}/git"
 
 inherit setuptools update-rc.d
 
-DEPENDS += "gst-plugins-good"
+DEPENDS += "gst-plugins-good gst-ffmpeg"
 
 PACKAGES += "${PN}-init"
 
@@ -32,6 +32,7 @@ RDEPENDS_${PN} += "python-distribute         \
                    ${PN}-init                \
                    gst-plugins-base-meta     \
                    gst-plugins-good-meta     \
+                   gst-ffmpeg                \
                   "
 
 do_install_append() {

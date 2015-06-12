@@ -1,7 +1,7 @@
 # The following packages might require a license for commercial use -- in order
 # to build them, you need to explicitely whitelist them by uncommenting the
 # the following line.
-#LICENSE_FLAGS_WHITELIST = "commercial_libav commercial_mpg123 commercial_x264"
+#LICENSE_FLAGS_WHITELIST = "commercial_libav commercial_mpg123 commercial_x264 commercial_gst-ffmpeg"
 
 # Source archiving options In order to enambe source archiving, uncomment the
 # line below; possible modes are are original, patched, configures; default is
