@@ -12,7 +12,7 @@ RDEPENDS_${PN} += "python-meld3"
 
 SRC_URI = "\
     git://github.com/Supervisor/${PN}.git;branch=${BRANCH};tag=${PV} \
-    file://supervisor.conf                                                \
+    file://supervisord.conf                                                \
     file://init                                                           \
     file://radiodan-device-type                                           \
           "
@@ -31,7 +31,7 @@ do_install_append () {
 
     install -d ${D}${sysconfdir}/supervisor/available
     install -d ${D}${sysconfdir}/supervisor/conf.d
-    install -m 0644 ${WORKDIR}/supervisor.conf ${D}${sysconfdir}/supervisor/
+    install -m 0644 ${WORKDIR}/supervisord.conf ${D}${sysconfdir}/
 
     install -d ${D}${sysconfdir}/init.d
     install -m 0755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/${PN}

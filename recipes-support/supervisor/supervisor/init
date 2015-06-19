@@ -16,7 +16,7 @@ NAME=supervisor
 PIDFILE=/var/run/$NAME.pid
 #This is the command to be run, give the full pathname
 DAEMON=/usr/bin/supervisord
-DAEMON_OPTS="-c /etc/supervisor/supervisor.conf"
+DAEMON_OPTS=""
 
 export PATH="${PATH:+$PATH:}/usr/sbin:/sbin"
 
