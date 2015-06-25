@@ -64,7 +64,6 @@ RDEPENDS_${PN}-support = "\
     dnsmasq		  \
     wifi-setup            \
     mpc                   \
-    mpd			  \
     mopidy                \
     mopidy-spotify        \
     "
