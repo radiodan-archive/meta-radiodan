@@ -29,7 +29,6 @@ RDEPENDS_${PN} += "python-distribute         \
                    python-json               \
                    python-misc               \
                    start-stop-daemon         \
-                   ${PN}-init                \
                    gst-plugins-base-meta     \
                    gst-plugins-good-meta     \
                    gst-plugins-ugly-mad      \
