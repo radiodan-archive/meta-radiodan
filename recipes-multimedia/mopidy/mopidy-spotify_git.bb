@@ -12,4 +12,4 @@ S = "${WORKDIR}/git"
 
 inherit setuptools
 
-RDEPENDS_${PN} = "mopidy"
+RDEPENDS_${PN} = "mopidy pyspotify"
