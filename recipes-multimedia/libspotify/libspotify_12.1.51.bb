@@ -10,7 +10,7 @@ def map_spotify_arch(d):
     a = d.getVar('PACKAGE_ARCH', True)
 
     if   re.match('(armv7|cortexa)', a): return 'armv7'
-    elif re.match('armv6', a): return 'armv6'
+    elif re.match('(armv6|arm1176jzfs)', a): return 'armv6'
     return a
 
 SPOTIFY_ARCH = "${@map_spotify_arch(d)}"
