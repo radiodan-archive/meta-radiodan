@@ -10,6 +10,8 @@ inherit radiodannode radiodansupervisor
 
 DEPENDS += "zeromq"
 
+SRC_URI += "file://default-to-mopidy.patch"
+
 do_install_append() {
     cd ${D}/opt/radiodan/apps/radiodan-magic/releases/0/config
     # We have to rename this file rather than make a link as node 0.10 will

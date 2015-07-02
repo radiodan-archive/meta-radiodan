@@ -1,0 +1,14 @@
+Index: git/config/radiodan-config.json.example
+===================================================================
+--- git.orig/config/radiodan-config.json.example	2015-07-02 11:13:42.738563810 +0100
++++ git/config/radiodan-config.json.example	2015-07-02 11:19:00.115269763 +0100
+@@ -2,7 +2,8 @@
+   "dataPath": "/tmp/.radiodan",
+   "defaults": {
+     "music": "/media/music",
+-    "outputFormat": "44100:16:1"
++    "outputFormat": "44100:16:1",
++    "player":"mopidy"
+   },
+   "players": [
+     {
