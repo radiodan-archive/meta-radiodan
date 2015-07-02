@@ -26,8 +26,14 @@ addtask check_eabi before do_fetch
 
 SRC_URI   = "https://developer.spotify.com/download/libspotify/libspotify-${PV}-Linux-${SPOTIFY_ARCH}-release.tar.gz"
 
-SRC_URI[md5sum] = "eb7e98849b3bb6d364fa74034602afbf"
-SRC_URI[sha256sum] = "ad27b6c5aee5382b66b39bfea3b1752076b7abcc445979ce25c1ec9d7ff3aeda"
+SRCMD5_armv6 = "11c92c757ff316a46e64d518d6d45b05"
+SRCSHA_armv6 = "4fb888eeb486578fa3a08e15f5aa2101632e60b56a068553d05d5d4ee0a080cc"
+
+SRCMD5_armv7a = "eb7e98849b3bb6d364fa74034602afbf"
+SRCSHA_armv7a = "ad27b6c5aee5382b66b39bfea3b1752076b7abcc445979ce25c1ec9d7ff3aeda"
+
+SRC_URI[md5sum] := "${SRCMD5}"
+SRC_URI[sha256sum] := "${SRCSHA}"
 
 S = "${WORKDIR}/libspotify-${PV}-Linux-${SPOTIFY_ARCH}-release"
 
