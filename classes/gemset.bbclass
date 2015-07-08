@@ -29,6 +29,7 @@ gemset_do_compile() {
 }
 
 gemset_do_install() {
+	export HTTP_PROXY="${HTTP_PROXY}"
 	export CXX="${TARGET_PREFIX}g++"
 	export CC="${TARGET_PREFIX}gcc"
 

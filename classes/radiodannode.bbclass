@@ -16,6 +16,11 @@ def map_nodejs_arch(a, d):
 do_compile () {
     set -e
 
+    export HTTP_PROXY=${HTTP_PROXY}
+    export HTTPS_PROXY=${HTTPS_PROXY}
+    export SOCKS_PROXY=${SOCKS_PROXY}
+    export GIT_PROXY_COMMAND=${GIT_PROXY_COMMAND}
+
     # npm creates a cache in $HOME/.npm, so point $HOME at the WORKDIR
     export HOME="${WORKDIR}"
 
